@@ -1,0 +1,6 @@
+launchpad-master.pem
+*.sh
+.idea
+build
+*.iml
+.gradle

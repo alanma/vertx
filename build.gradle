@@ -1,0 +1,48 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+repositories {
+    jcenter()
+	maven {
+		url "https://oss.sonatype.org/content/repositories/snapshots"
+	}
+}
+
+ext {
+	vertx_version = '3.0.0-SNAPSHOT'
+
+	lib = [
+		vertx : [
+			"io.vertx:vertx-core:${vertx_version}",
+			"io.vertx:vertx-web:${vertx_version}"
+		]
+	]
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    compile lib.vertx
+
+    testCompile 'junit:junit:4.12'
+}
+
+
+mainClassName = 'vertx.Runner'
+applicationDefaultJvmArgs = [
+		"-server",
+		"-Xms1500m",
+		"-Xmx1500m",
+		"-Xmn500m",
+		"-XX:+UseParallelGC",
+		"-XX:+UseCompressedOops",
+		"-XX:+PrintFlagsFinal"
+]
+
+/**
+ * Gradle wrapper.
+ */
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.4'
+}
