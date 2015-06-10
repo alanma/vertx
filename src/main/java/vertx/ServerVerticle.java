@@ -5,6 +5,7 @@ import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerOptions;
 import io.vertx.ext.web.Router;
+import io.vertx.ext.web.handler.TimeoutHandler;
 
 public class ServerVerticle extends AbstractVerticle {
 
@@ -28,14 +29,18 @@ public class ServerVerticle extends AbstractVerticle {
 	}
 
 	/**
-	 * Setup routers, based on configuration.
+	 * Setup routers.
 	 */
 	protected Router setupRouter() {
 		router = Router.router(vertx);
 
 		router
-			.route(HttpMethod.GET, "/admin")
-			.blockingHandler(new AdminHandler());
+			.route()
+			.handler(TimeoutHandler.create(5000));
+
+		router
+			.route(HttpMethod.GET, "/foo")
+			.blockingHandler(new FooHandler());
 
 		return router;
 	}

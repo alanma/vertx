@@ -24,13 +24,15 @@ targetCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
     compile lib.vertx
+	compile 'org.jodd:jodd-http:3.6.6'
 
     testCompile 'junit:junit:4.12'
 }
 
-
-mainClassName = 'vertx.Runner'
-applicationDefaultJvmArgs = [
+task server(type: JavaExec) {
+	main = 'vertx.Runner'
+	classpath = sourceSets.main.runtimeClasspath
+	applicationDefaultJvmArgs = [
 		"-server",
 		"-Xms1500m",
 		"-Xmx1500m",
@@ -38,7 +40,13 @@ applicationDefaultJvmArgs = [
 		"-XX:+UseParallelGC",
 		"-XX:+UseCompressedOops",
 		"-XX:+PrintFlagsFinal"
-]
+	]
+}
+
+task client1(type: JavaExec) {
+	main = 'vertx.Client1'
+	classpath = sourceSets.main.runtimeClasspath
+}
 
 /**
  * Gradle wrapper.
