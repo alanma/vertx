@@ -9,6 +9,8 @@ import jodd.http.HttpResponse;
 public class FooHandler implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext routingContext) {
+		System.out.println("FooHandler.handle");
+
 		HttpServerRequest request = routingContext.request();
 
 		HttpRequest httpRequest = HttpRequest.get("http://localhost:8080/bar");

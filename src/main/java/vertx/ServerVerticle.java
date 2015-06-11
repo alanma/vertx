@@ -40,11 +40,11 @@ public class ServerVerticle extends AbstractVerticle {
 
 		router
 			.route(HttpMethod.GET, "/foo")
-			.blockingHandler(new FooHandler());
+			.handler(new FooHandler());
 
 		router
 			.route(HttpMethod.GET, "/bar")
-			.blockingHandler(new BarHandler());
+			.handler(new BarHandler());
 
 		return router;
 	}
