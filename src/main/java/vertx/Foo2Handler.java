@@ -22,6 +22,6 @@ public class Foo2Handler implements Handler<RoutingContext> {
 						request.response().setStatusCode(200).end("FOO\n" + body.toString());
 					});
 			}
-		);
+		).end();
 	}
 }
