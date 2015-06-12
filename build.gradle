@@ -11,7 +11,7 @@ repositories {
 
 ext {
 	//vertx_version = '3.0.0-SNAPSHOT'
-	vertx_version = '3.0.0-milestone6use '
+	vertx_version = '3.0.0-milestone6'
 
 	lib = [
 		vertx : [

@@ -31,10 +31,12 @@ public class AppServer {
 		CompletableFuture<Void>[] allFutures =
 			new CompletableFuture[numberOfServerVerticles];
 
+		int verticleId = 0;
+
 		while (numberOfServerVerticles-- > 0) {
 			DeploymentOptions deploymentOptions = new DeploymentOptions();
 
-			Verticle verticle = new ServerVerticle();
+			Verticle verticle = new ServerVerticle(++verticleId);
 
 			CompletableFuture<Void> deployFuture = new CompletableFuture<>();
 

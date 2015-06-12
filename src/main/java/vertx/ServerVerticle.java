@@ -9,6 +9,12 @@ import io.vertx.ext.web.handler.TimeoutHandler;
 
 public class ServerVerticle extends AbstractVerticle {
 
+	public ServerVerticle(int verticleId) {
+		this.verticleId = verticleId;
+
+		System.out.println("Verticle #" + verticleId);
+	}
+
 	@Override
 	public void start() {
 		HttpServerOptions httpServerOptions = new HttpServerOptions();
@@ -66,4 +72,5 @@ public class ServerVerticle extends AbstractVerticle {
 	protected Router router;
 	protected HttpServer server;
 
+	private final int verticleId;
 }
