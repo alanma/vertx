@@ -34,13 +34,23 @@ public class ServerVerticle extends AbstractVerticle {
 	protected Router setupRouter() {
 		router = Router.router(vertx);
 
+		router.route().failureHandler(routingContext -> {
+			System.out.println("## ERROR " + routingContext.statusCode());
+
+			Throwable throwable = routingContext.failure();
+
+			if (throwable != null) {
+				throwable.printStackTrace();
+			}
+		});
+
 		router
 			.route()
 			.handler(TimeoutHandler.create(5000));
 
 		router
 			.route(HttpMethod.GET, "/foo")
-			.handler(new FooHandler());
+			.blockingHandler(new FooHandler());
 
 		router
 			.route(HttpMethod.GET, "/foo2")
@@ -48,7 +58,7 @@ public class ServerVerticle extends AbstractVerticle {
 
 		router
 			.route(HttpMethod.GET, "/bar")
-			.handler(new BarHandler());
+			.blockingHandler(new BarHandler());
 
 		return router;
 	}
