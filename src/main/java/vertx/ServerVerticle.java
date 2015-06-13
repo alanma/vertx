@@ -32,6 +32,9 @@ public class ServerVerticle extends AbstractVerticle {
 					System.out.println("Error starting server " + event.cause());
 				}
 			});
+
+		System.out.println("Verticle: " + verticleId + " started on "
+			+ Thread.currentThread().getId() + " (" + Thread.currentThread().getName() + ")");
 	}
 
 	/**

@@ -9,7 +9,8 @@ import jodd.http.HttpResponse;
 public class FooHandler implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext routingContext) {
-		System.out.println("FooHandler.handle");
+		System.out.println("FooHandler.handle on "
+			+ Thread.currentThread().getId() + " (" + Thread.currentThread().getName() + ")");
 
 		HttpServerRequest request = routingContext.request();
 
