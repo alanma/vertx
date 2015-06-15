@@ -7,7 +7,7 @@ import io.vertx.ext.web.RoutingContext;
 public class BarHandler implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext routingContext) {
-		System.out.println("BarHandler.handle on"
+		System.out.println("BarHandler.handle on "
 			+ Thread.currentThread().getId() + " (" + Thread.currentThread().getName() + ")");
 
 		HttpServerRequest request = routingContext.request();

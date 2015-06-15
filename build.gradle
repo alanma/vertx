@@ -12,8 +12,8 @@ repositories {
 mainClassName = "vertx.Runner"
 
 ext {
-	//vertx_version = '3.0.0-SNAPSHOT'
-	vertx_version = '3.0.0-milestone6'
+	vertx_version = '3.0.0-SNAPSHOT'
+	//vertx_version = '3.0.0-milestone6'
 
 	lib = [
 		vertx : [
