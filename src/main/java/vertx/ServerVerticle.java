@@ -12,7 +12,7 @@ public class ServerVerticle extends AbstractVerticle {
 	public ServerVerticle(int verticleId) {
 		this.verticleId = verticleId;
 
-		System.out.println("Verticle #" + verticleId);
+		System.out.println("ServerVerticle #" + verticleId);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class ServerVerticle extends AbstractVerticle {
 				}
 			});
 
-		System.out.println("Verticle: " + verticleId + " started on "
+		System.out.println("ServerVerticle: " + verticleId + " started on "
 			+ Thread.currentThread().getId() + " [" + Thread.currentThread().getName() + "]");
 	}
 

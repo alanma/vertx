@@ -13,7 +13,6 @@ public class AppServer {
 		this.vertx = Vertx.vertx(vertxOptions);
 	}
 
-
 	public void start() {
 		CompletableFuture<Void> serversFuture = deployServerVerticles(10);
 
@@ -28,12 +27,12 @@ public class AppServer {
 		CompletableFuture<Void>[] allFutures =
 			new CompletableFuture[numberOfServerVerticles];
 
-		for (int verticleId = 1; verticleId <= numberOfServerVerticles; verticleId++) {
+		for (int verticleId = 0; verticleId < numberOfServerVerticles; verticleId++) {
 			Verticle verticle = new ServerVerticle(verticleId);
 
 			CompletableFuture<Void> deployFuture = new CompletableFuture<>();
 
-			allFutures[numberOfServerVerticles] = deployFuture;
+			allFutures[verticleId] = deployFuture;
 
 			vertx.deployVerticle(verticle, event -> {
 					deployFuture.complete(null);
