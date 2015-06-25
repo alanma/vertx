@@ -26,7 +26,7 @@ public class AppServer {
 	@SuppressWarnings("unchecked")
 	protected CompletableFuture<Void> deployServerVerticles() {
 
-		int numberOfServerVerticles = 2;
+		int numberOfServerVerticles = 10;
 
 		CompletableFuture<Void>[] allFutures =
 			new CompletableFuture[numberOfServerVerticles];

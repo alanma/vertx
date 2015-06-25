@@ -23,7 +23,7 @@ public class ServerVerticle extends AbstractVerticle {
 
 		server = vertx.createHttpServer(httpServerOptions);
 
-		setupRouter();
+		setupRoutes();
 
 		server
 			.requestHandler(router::accept)
@@ -34,13 +34,13 @@ public class ServerVerticle extends AbstractVerticle {
 			});
 
 		System.out.println("Verticle: " + verticleId + " started on "
-			+ Thread.currentThread().getId() + " (" + Thread.currentThread().getName() + ")");
+			+ Thread.currentThread().getId() + " [" + Thread.currentThread().getName() + "]");
 	}
 
 	/**
 	 * Setup routers.
 	 */
-	protected Router setupRouter() {
+	protected Router setupRoutes() {
 		router = Router.router(vertx);
 
 		router.route().failureHandler(routingContext -> {

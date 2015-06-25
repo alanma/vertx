@@ -12,7 +12,7 @@ public class Foo3Handler implements Handler<RoutingContext> {
 	@Override
 	public void handle(RoutingContext routingContext) {
 		System.out.println("Foo3Handler.handle on "
-			+ Thread.currentThread().getId() + " (" + Thread.currentThread().getName() + ")");
+			+ Thread.currentThread().getId() + " [" + Thread.currentThread().getName() + "]");
 
 		CompletableFuture.runAsync(() -> {
 			HttpServerRequest request = routingContext.request();
