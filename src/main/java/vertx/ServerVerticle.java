@@ -69,9 +69,9 @@ public class ServerVerticle extends AbstractVerticle {
 			.route(HttpMethod.GET, "/foo3")
 			.handler(new Foo3Handler());
 
-		router
-			.route(HttpMethod.GET, "/bar")
-			.handler(new BarHandler());
+//		router
+//			.route(HttpMethod.GET, "/bar")
+//			.handler(new BarHandler());
 
 		return router;
 	}

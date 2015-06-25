@@ -1,6 +1,5 @@
 package vertx;
 
-import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Verticle;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
@@ -16,7 +15,7 @@ public class AppServer {
 
 
 	public void start() {
-		CompletableFuture<Void> serversFuture = deployServerVerticles();
+		CompletableFuture<Void> serversFuture = deployServerVerticles(10);
 
 		serversFuture.join();
 
@@ -24,25 +23,19 @@ public class AppServer {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected CompletableFuture<Void> deployServerVerticles() {
-
-		int numberOfServerVerticles = 10;
+	protected CompletableFuture<Void> deployServerVerticles(int numberOfServerVerticles) {
 
 		CompletableFuture<Void>[] allFutures =
 			new CompletableFuture[numberOfServerVerticles];
 
-		int verticleId = 0;
-
-		while (numberOfServerVerticles-- > 0) {
-			DeploymentOptions deploymentOptions = new DeploymentOptions();
-
-			Verticle verticle = new ServerVerticle(++verticleId);
+		for (int verticleId = 1; verticleId <= numberOfServerVerticles; verticleId++) {
+			Verticle verticle = new ServerVerticle(verticleId);
 
 			CompletableFuture<Void> deployFuture = new CompletableFuture<>();
 
 			allFutures[numberOfServerVerticles] = deployFuture;
 
-			vertx.deployVerticle(verticle, deploymentOptions, event -> {
+			vertx.deployVerticle(verticle, event -> {
 					deployFuture.complete(null);
 				}
 			);
