@@ -26,12 +26,12 @@ public class ServerVerticle extends AbstractVerticle {
 		setupRoutes();
 
 		server
-			.requestHandler(router::accept)
+			.requestHandler(AppServer.ref.router::accept)
 			.listen(8080, event -> {
-				if (!event.succeeded()) {
-					System.out.println("Error starting server " + event.cause());
-				}
-			});
+			if (!event.succeeded()) {
+				System.out.println("Error starting server " + event.cause());
+			}
+		});
 
 		System.out.println("ServerVerticle: " + verticleId + " started on "
 			+ Thread.currentThread().getId() + " [" + Thread.currentThread().getName() + "]");
@@ -41,7 +41,8 @@ public class ServerVerticle extends AbstractVerticle {
 	 * Setup routers.
 	 */
 	protected Router setupRoutes() {
-		router = Router.router(vertx);
+		//router = Router.router(vertx);
+		Router router = AppServer.ref.router;
 
 		router.route().failureHandler(routingContext -> {
 			System.out.println("## ERROR " + routingContext.statusCode());
@@ -76,7 +77,6 @@ public class ServerVerticle extends AbstractVerticle {
 		return router;
 	}
 
-	protected Router router;
 	protected HttpServer server;
 
 	private final int verticleId;

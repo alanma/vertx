@@ -11,7 +11,10 @@ public class BarVerticle extends AbstractVerticle {
 		Router router = Router.router(vertx);
 
 		router
-			.route(HttpMethod.GET, "/bar/hello")
+			.route(HttpMethod.GET, "/hello")
 			.handler(new BarHandler());
+
+
+		AppServer.ref.router.mountSubRouter("/bar", router);
 	}
 }
